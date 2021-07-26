@@ -58,7 +58,8 @@ int main() {
 	int r = InitIt("101.200.218.142", 1388, 5, 1);
 	// µÇÂ¼ÕËºÅ
 	LoginIt("putao520", "YuYao1022", 0);
-	
+
+	cout << "next!" << endl;
 	system("pause");
 	return 0;
 }
