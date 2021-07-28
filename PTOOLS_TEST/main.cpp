@@ -1,5 +1,4 @@
 #include <cstdlib>
-
 #include "stdio.h"
 #include "export.h"
 // C++ need
@@ -78,7 +77,6 @@ void InitByAsyncAndApi() {
 	system("pause");
 }
 
-
 /*
  * 载入使用 C++ 风格接口，并基于同步接口 
  */
@@ -138,18 +136,24 @@ void InitBySyncAndCpp() {
 Memory* InitByLogin() {
 	printf("测试登录块\n");
 	MemBuilder builder;
-	Memory* memory = builder.connect("101.200.218.142", 1388, 5, 1)
-		.verify("putao520", "YuYao1022").build(GetCurrentProcessId());
+	
+	Memory* memory = builder
+	.connect("101.200.218.142", 1388, 5, 1)
+	.verify("putao520", "YuYao1022")
+	.build(GetCurrentProcessId());
+	
 	if (!memory) {
 		printf("生成Memory对象失败 ->错误码:%d\n", builder.getLastError());
 		return nullptr;
 	}
+	
 	printf("====================================\n");
 	return memory;
 }
 
 MemoryReadWriter* InitByMemory(Memory* memory) {
 	printf("测试内存块\n");
+	
 	// 申请内存测试
 	char* szText = (char*)memory->alloc(64, false);
 	if (!szText) {
@@ -176,6 +180,7 @@ MemoryReadWriter* InitByMemory(Memory* memory) {
 	
 	// 获得读写专用对象
 	MemoryReadWriter* mwr = memory->buildReadWriter();
+	
 	// 释放Memory
 	delete memory;
 	printf("\n=====================================\n");
@@ -184,8 +189,10 @@ MemoryReadWriter* InitByMemory(Memory* memory) {
 
 void InitByLocalMemory(MemoryReadWriter* mwr) {
 	printf("测试专用内存块\n");
+	
 	char szTEXT[MAX_PATH];
 	memset(szTEXT, 0, MAX_PATH);
+	
 	// 测试专用读
 	UINT32* p = (UINT32*)szTEXT;
 	*p = 0x11223344;
@@ -196,6 +203,7 @@ void InitByLocalMemory(MemoryReadWriter* mwr) {
 	UINT32 l = 0x10000;
 	mwr->write<UINT32>(p, (UINT32*)&l);
 	printf("[专用写]地址:%#llx ->值:%d\n", &l, *p);
+	
 	// 释放专用对象
 	delete mwr;
 	printf("\n=====================================\n");
