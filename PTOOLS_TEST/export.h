@@ -36,11 +36,10 @@ extern "C"
 	@return
 		0		未运行
 		1		更新中
-		2		更新失败
-		3		分析中
-		4		初始化
-		5		失败
-		6		成功
+		2		分析中
+		3		初始化
+		4		失败
+		5		成功
 	*/
 	ULONG PTOOLS_WINAPI GetProcessStatus();
 	// 注册状态通知回调
@@ -57,6 +56,7 @@ extern "C"
 	@param appid	应用ID
 	*/
 	int PTOOLS_WINAPI InitIt(const char* ip, int port, int ver, int appid);
+	int PTOOLS_WINAPI InitItSync(const char* ip, int port, int ver, int appid);
 	// 反初始化
 	void PTOOLS_WINAPI UnloadIt();
 	// 初始化进程操作对象
@@ -80,6 +80,7 @@ extern "C"
 
 #ifdef _WIN64
 	int PTOOLS_WINAPI LoginIt(const char* id, const char* pw, __int64 chk);
+	int PTOOLS_WINAPI LoginItSync(const char* id, const char* pw, __int64 chk);
 	void PTOOLS_WINAPI FreeProcessMemory(void* handle, void* address);
 	void PTOOLS_WINAPI GetProcessMemory(void* handle, void* address, char* buffer, DWORD len);
 	void PTOOLS_WINAPI PutProcessMemory(void* handle, void* address, char* buffer, DWORD len);
@@ -91,6 +92,7 @@ extern "C"
 	@param chk	额外参数,写0
 	*/
 	int PTOOLS_WINAPI LoginIt(const char* id, const char* pw, int chk);
+	int PTOOLS_WINAPI LoginItSync(const char* id, const char* pw, int chk);
 	// 释放内存
 	/*
 	@param handle	进程句柄
@@ -156,7 +158,7 @@ extern "C"
 	@param handle	模块句柄
 	*/
 	void PTOOLS_WINAPI CloseMemHandle(void* handle);
-	
+
 	// 内存映射系统
 	/*
 	*/
@@ -178,8 +180,8 @@ extern "C"
 	typedef struct SymbalResult {
 		DWORD num;
 		DWORD result;
-	}SymbalResult, *pSymbalResult;
-	
+	}SymbalResult, * pSymbalResult;
+
 	// 获得 file 文件内部未公开结构或者函数的偏移地址
 	/*
 	@param file				系统文件路径

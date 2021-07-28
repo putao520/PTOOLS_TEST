@@ -13,15 +13,36 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="源文件\Mem">
+      <UniqueIdentifier>{6354b5eb-fcd5-445c-94bf-e91b0542b49b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="MemBuilder.cpp">
+      <Filter>源文件\Mem</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory.cpp">
+      <Filter>源文件\Mem</Filter>
+    </ClCompile>
+    <ClCompile Include="MemoryReadWriter.cpp">
+      <Filter>源文件\Mem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="export.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MemBuilder.h">
+      <Filter>源文件\Mem</Filter>
+    </ClInclude>
+    <ClInclude Include="Memory.h">
+      <Filter>源文件\Mem</Filter>
+    </ClInclude>
+    <ClInclude Include="MemoryReadWriter.h">
+      <Filter>源文件\Mem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
