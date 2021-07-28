@@ -202,6 +202,20 @@ void InitByLocalMemory(MemoryReadWriter* mwr) {
 	UINT32 l = 0x10000;
 	mwr->write<UINT32>(p, (UINT32*)&l);
 	printf("[专用写]地址:%#llx ->值:%d\n", &l, *p);
+
+	// 测试专用读无效
+	UINT32 e = mwr->read<UINT32>((void *)0x10001);
+	printf("[专用无效读]地址:%#llx ->值:%x\n", 0x10001, e);
+
+	// 测试专用写无效
+	__try {
+		mwr->write<UINT32>((void*)0x11001, (UINT32*)&l);
+		printf("[专用无效写]地址:%#llx ->值:%x\n", 0x11001, e);
+	}
+	__except(1){
+		printf("需要自己确保写入地址有效，或者用try-catch包裹起来\n");
+	}
+	
 	
 	// 释放专用对象
 	delete mwr;

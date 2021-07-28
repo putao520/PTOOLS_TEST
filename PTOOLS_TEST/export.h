@@ -36,10 +36,11 @@ extern "C"
 	@return
 		0		未运行
 		1		更新中
-		2		分析中
-		3		初始化
-		4		失败
-		5		成功
+		2		更新失败
+		3		分析中
+		4		初始化
+		5		失败
+		6		成功
 	*/
 	ULONG PTOOLS_WINAPI GetProcessStatus();
 	// 注册状态通知回调

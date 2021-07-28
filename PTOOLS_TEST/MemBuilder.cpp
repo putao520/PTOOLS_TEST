@@ -8,6 +8,9 @@ MemBuilder MemBuilder::connect(const char* ip, unsigned int port, unsigned int v
 
 MemBuilder MemBuilder::verify(const char* id, const char* pw) {
 	last_error_code = LoginItSync("putao520", "YuYao1022", 0);
+
+	printf("µÇÂ¼×´Ì¬Âë:%d", last_error_code);
+
 	return *this;
 }
 
