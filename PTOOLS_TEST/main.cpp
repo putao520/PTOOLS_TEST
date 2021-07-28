@@ -8,10 +8,9 @@
 
 #include <iostream>
 #pragma comment(lib,"./PTOOLS.lib")
+typedef void (WINAPI* def_change_step)(ULONG step);
 
 using namespace std;
-
-typedef void (WINAPI* def_change_step)(ULONG step);
 void recv_status(ULONG step) {
 	printf("×´Ì¬:%d\n", step);
 	if (step == 6) {// ³É¹¦
