@@ -77,7 +77,7 @@ void InitByAsyncAndApi() {
 }
 
 /*
- * 载入使用 C++ 风格接口，并基于同步接口 
+ * 载入使用 C++ 风格接口，并基于同步接口
  */
 void InitBySyncAndCpp() {
 	MemBuilder builder;
