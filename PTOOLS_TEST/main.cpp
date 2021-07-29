@@ -6,6 +6,8 @@
 #include "Memory.h"
 #include "MemoryReadWriter.h"
 
+#include "TestApp.h"
+
 #include <iostream>
 #pragma comment(lib,"./PTOOLS.lib")
 typedef void (WINAPI* def_change_step)(ULONG step);
@@ -223,6 +225,7 @@ void InitByLocalMemory(MemoryReadWriter* mwr) {
 }
 
 int main() {
+	/*
 	Memory* memory = InitByLogin();
 	if (memory) {
 		MemoryReadWriter* mwr = InitByMemory(memory);
@@ -230,6 +233,20 @@ int main() {
 			InitByLocalMemory(mwr);
 		}
 	}
+	*/
+
+	
+	// ×¢²á×´Ì¬¼à¿Ø»Øµ÷
+	OnProcessChange(wait_test);
+	// Á¬½Ó·þÎñÆ÷
+	int r = InitIt("101.200.218.142", 1388, 5, 1);
+	// µÇÂ¼ÕËºÅ
+	LoginIt("putao520", "YuYao1022", 0);
+
+	cout << "next!" << endl;
+	
+
+	// test_findpid();
 	
 	system("pause");
 	return 0;
