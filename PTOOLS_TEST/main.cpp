@@ -243,6 +243,7 @@ int main() {
 	// µÇÂ¼ÕËºÅ
 	LoginIt("putao520", "YuYao1022", 0);
 
+	watch_test();
 	cout << "next!" << endl;
 	
 
