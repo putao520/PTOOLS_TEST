@@ -60,6 +60,9 @@ extern "C"
 	int PTOOLS_WINAPI InitItSync(const char* ip, int port, int ver, int appid);
 	// 反初始化
 	void PTOOLS_WINAPI UnloadIt();
+	// 关闭提示
+	void PTOOLS_WINAPI CloseMessage();
+
 	// 初始化进程操作对象
 	/*
 	@param pid		进程ID
@@ -80,8 +83,8 @@ extern "C"
 	void PTOOLS_WINAPI AllocProcessMemory(void* handle, DWORD len, bool execute, _PTR* outPtr);
 
 #ifdef _WIN64
-	int PTOOLS_WINAPI LoginIt(const char* id, const char* pw, __int64 chk);
-	int PTOOLS_WINAPI LoginItSync(const char* id, const char* pw, __int64 chk);
+	int PTOOLS_WINAPI LoginIt(const char* id, const char* pw, long long chk);
+	int PTOOLS_WINAPI LoginItSync(const char* id, const char* pw, long long chk);
 	void PTOOLS_WINAPI FreeProcessMemory(void* handle, void* address);
 	void PTOOLS_WINAPI GetProcessMemory(void* handle, void* address, char* buffer, DWORD len);
 	void PTOOLS_WINAPI PutProcessMemory(void* handle, void* address, char* buffer, DWORD len);
@@ -216,6 +219,13 @@ extern "C"
 	@return					成功返回true,失败返回false
 	 */
 	BOOL PTOOLS_WINAPI CloseLocalHandle(void* handle);
+	// 移动鼠标
+	/*
+	@param x			目的 x 坐标
+	@param y			目的 y 坐标
+	@return				成功返回true,失败返回false
+	 */
+	BOOL PTOOLS_WINAPI MouseMove(LONG x, LONG y);
 #ifdef __cplusplus
 }
 #endif

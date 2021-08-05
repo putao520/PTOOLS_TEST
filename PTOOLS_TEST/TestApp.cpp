@@ -11,6 +11,7 @@ void watch_test() {
 	try {
 		do {
 			hwnd = FindWindow("Notepad", nullptr);
+			
 			if (hwnd) {
 				GetWindowThreadProcessId(hwnd, &dwPid);
 			}
@@ -31,9 +32,24 @@ void watch_test() {
 	}
 }
 
+void iSleep() {
+	Sleep(100 * 1000);
+}
+
 void wait_test(ULONG step) {
 	if( step == 6 ) {
 		// watch_test();
 	}
 	printf("status:%d\n", step);
+}
+
+DWORD wait_window(const char * name) {
+	HWND handle = NULL;
+	do {
+		handle = FindWindow(name, NULL);
+		Sleep(500);
+	} while (!handle);
+	DWORD pid = 0;
+	GetWindowThreadProcessId(handle, &pid);
+	return pid;
 }

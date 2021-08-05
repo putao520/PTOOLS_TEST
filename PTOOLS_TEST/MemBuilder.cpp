@@ -2,14 +2,14 @@
 
 
 MemBuilder MemBuilder::connect(const char* ip, unsigned int port, unsigned int ver, unsigned int appID) {
-	last_error_code = InitItSync("101.200.218.142", 1388, 5, 1);
+	last_error_code = InitItSync(ip, port, ver, appID);
 	return *this;
 }
 
 MemBuilder MemBuilder::verify(const char* id, const char* pw) {
-	last_error_code = LoginItSync("putao520", "YuYao1022", 0);
+	last_error_code = LoginItSync(id, pw, 0);
 
-	printf("µÇÂ¼×´Ì¬Âë:%d", last_error_code);
+	printf("µÇÂ¼×´Ì¬Âë:%d\n", last_error_code);
 
 	return *this;
 }
@@ -21,9 +21,10 @@ int MemBuilder::getLastError() const {
 }
 
 Memory* MemBuilder::build(DWORD pid) const {
-	return last_error_code == 6 ? new Memory(pid) : nullptr;
+	return new Memory(pid);
 }
 
 BOOL MemBuilder::isSuccess() const{
+	printf("Ð£Ñé×´Ì¬Âë:%d\n", last_error_code);
 	return last_error_code == 6;
 }

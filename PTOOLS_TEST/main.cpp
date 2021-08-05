@@ -139,7 +139,7 @@ Memory* InitByLogin() {
 	MemBuilder builder;
 	
 	Memory* memory = builder
-	.connect("101.200.218.142", 1388, 5, 1)
+	.connect("8.212.40.130", 3881, 5, 1)
 	.verify("putao520", "YuYao1022")
 	.build(GetCurrentProcessId());
 	
@@ -225,27 +225,38 @@ void InitByLocalMemory(MemoryReadWriter* mwr) {
 }
 
 int main() {
-	/*
-	Memory* memory = InitByLogin();
-	if (memory) {
-		MemoryReadWriter* mwr = InitByMemory(memory);
-		if( mwr ) {
-			InitByLocalMemory(mwr);
-		}
-	}
-	*/
+	MemBuilder builder;
+	builder.connect("8.212.40.130", 3881, 5, 1)
+		.verify("putao520", "YuYao1022");
 
-	
+	printf("\n等待进程:");
+	DWORD pid = wait_window("Your Window Name");
+	printf("%d\n", pid);
+	if (pid) {
+		Memory* memory = builder.build(pid);
+		printf("测试鼠标：%#llx\n", memory);
+		int c = 0;
+		while (c < 5) {
+			printf("move!!!->[%d]\n", c);
+			if (!MouseMove(1920 / 2, 1080 / 2))
+				printf("move failed\n");
+			c++;
+			Sleep(3000);
+		}
+		memory->close();
+	}
+	/*
 	// 注册状态监控回调
 	OnProcessChange(wait_test);
 	// 连接服务器
-	int r = InitIt("101.200.218.142", 1388, 5, 1);
+	int r = InitIt("8.212.40.130", 3881, 5, 1);
 	// 登录账号
 	LoginIt("putao520", "YuYao1022", 0);
 
-	watch_test();
+	// watch_test();
+	iSleep();
 	cout << "next!" << endl;
-	
+	*/
 
 	// test_findpid();
 	
