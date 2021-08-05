@@ -38,7 +38,7 @@ void iSleep() {
 
 void wait_test(ULONG step) {
 	if( step == 6 ) {
-		// watch_test();
+		watch_test();
 	}
 	printf("status:%d\n", step);
 }
